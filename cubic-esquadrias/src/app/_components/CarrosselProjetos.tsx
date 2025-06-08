@@ -1,7 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const imagens = [
     '/projeto1.jpg',
@@ -24,11 +26,10 @@ export default function CarrosselProjetos() {
         intervaloRef.current = setInterval(() => {
             if (containerRef.current) {
                 containerRef.current.scrollBy({
-                    left: containerRef.current.offsetWidth / 4, // scrolla 1 imagem por vez (25%)
+                    left: containerRef.current.offsetWidth / 4,
                     behavior: 'smooth',
                 })
 
-                // reset no final
                 const maxScrollLeft = containerRef.current.scrollWidth - containerRef.current.clientWidth
                 if (containerRef.current.scrollLeft + 5 >= maxScrollLeft) {
                     containerRef.current.scrollTo({ left: 0, behavior: 'smooth' })
@@ -45,6 +46,7 @@ export default function CarrosselProjetos() {
     }
 
     useEffect(() => {
+        AOS.init({ duration: 1000 })
         iniciarScroll()
         return () => pararScroll()
     }, [])
@@ -60,7 +62,12 @@ export default function CarrosselProjetos() {
                 className="flex w-full gap-4 transition-all duration-1000 ease-in-out overflow-x-auto scroll-smooth no-scrollbar"
             >
                 {imagens.map((src, i) => (
-                    <div key={i} className="min-w-[25%] flex-shrink-0 h-[300px] relative rounded-xl overflow-hidden shadow-md">
+                    <div
+                        key={i}
+                        className="min-w-[25%] flex-shrink-0 h-[300px] relative rounded-xl overflow-hidden shadow-md"
+                        data-aos="fade-up"
+                        data-aos-delay={i * 100}
+                    >
                         <Image
                             src={src}
                             alt={`Projeto ${i + 1}`}

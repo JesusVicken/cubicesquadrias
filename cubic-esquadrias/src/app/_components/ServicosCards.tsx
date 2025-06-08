@@ -53,11 +53,6 @@ export default function ServicosCards() {
             icon: <Building2 className="w-12 h-12 text-green-500 mb-4" />,
             title: "Fachadas em ACM e Vidro",
             desc: "Fachadas modernas com revestimento em ACM e pele de vidro, garantindo sofisticação, resistência e melhor performance térmica e acústica."
-        },
-        {
-            icon: <Layers className="w-12 h-12 text-green-500 mb-4" />,
-            title: "Vidros Temperados",
-            desc: "Instalação de vidros temperados para ambientes internos e externos, com segurança, transparência e excelente acabamento."
         }
     ]
 

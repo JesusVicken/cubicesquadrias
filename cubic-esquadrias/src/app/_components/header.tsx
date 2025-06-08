@@ -82,7 +82,7 @@ export default function Header() {
                             Sobre
                         </Button>
                     </Link>
-                    <Link href="/projeto">
+                    <Link href="/projetos">
                         <Button
                             variant="ghost"
                             className="w-full text-left"

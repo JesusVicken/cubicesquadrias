@@ -243,3 +243,13 @@
     background-size: 100% 2px, 2px 100%, 100% 2px, 2px 100%;
   }
 }
+
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

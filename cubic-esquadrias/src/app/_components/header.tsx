@@ -82,13 +82,13 @@ export default function Header() {
                             Sobre
                         </Button>
                     </Link>
-                    <Link href="/contato">
+                    <Link href="/projeto">
                         <Button
                             variant="ghost"
                             className="w-full text-left"
                             onClick={() => setMobileMenuOpen(false)}
                         >
-                            Contato
+                            Projetos
                         </Button>
                     </Link>
                 </div>

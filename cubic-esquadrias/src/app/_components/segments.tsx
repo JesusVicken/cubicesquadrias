@@ -20,11 +20,11 @@ const services: Service[] = [
         desc: 'Fabricamos portas em ACM, vidro, alumínio dos tipos de deslizantes, pivotantes e camarão.',
         image: '/porta.janela.jpg',
     },
-    {
-        title: 'Brise camarão em ripado',
-        desc: 'Trabalhamos com diversos materiais, inox, alumínio, ripado de metal e vidro.',
-        image: '/brise.jpg',
-    },
+    // {
+    //     title: 'Brise camarão em ripado',
+    //     desc: 'Trabalhamos com diversos materiais, inox, alumínio, ripado de metal e vidro.',
+    //     image: '/brise.jpg',
+    // },
     {
         title: 'Pele de Vidro',
         desc: 'Apresenta como uma opção prática, simples e bonita para fachada de sua casa ou prédio.',
@@ -35,11 +35,11 @@ const services: Service[] = [
         desc: 'Pele de vidro espelhada com sobreposição em chapa metálica recortada.',
         image: '/pele-vidro.jpeg',
     },
-    {
-        title: 'Spiders',
-        desc: 'Uma ótima opção para acabamento dos brises, ripados e spiders.',
-        image: '/spider.jpg',
-    },
+    // {
+    //     title: 'Spiders',
+    //     desc: 'Uma ótima opção para acabamento dos brises, ripados e spiders.',
+    //     image: '/spider.jpg',
+    // },
     {
         title: 'Sauna',
         desc: 'Valorize cada espaço em seu lar ou empreendimento, com uma ótima vantagem à luminosidade.',

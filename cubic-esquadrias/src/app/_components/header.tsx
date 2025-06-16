@@ -43,6 +43,11 @@ export default function Header() {
                             Projetos
                         </Button>
                     </Link>
+                    <Link href="/clientes">
+                        <Button variant="ghost" className="text-base">
+                            Nossos Clientes
+                        </Button>
+                    </Link>
                 </nav>
 
                 {/* Ícone do Menu Mobile */}
@@ -89,6 +94,15 @@ export default function Header() {
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Projetos
+                        </Button>
+                    </Link>
+                    <Link href="/clientes">
+                        <Button
+                            variant="ghost"
+                            className="w-full text-left"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            Nossos Clientes
                         </Button>
                     </Link>
                 </div>

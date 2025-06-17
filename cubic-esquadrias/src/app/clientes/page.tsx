@@ -79,7 +79,7 @@ export default function Clientes() {
                 <div className="max-w-4xl mx-auto text-center mb-16">
                     <SectionTitle
                         title="Nossos Clientes"
-                        subtitle="Empresas que confiam em nosso trabalho"
+                        // subtitle="Alguns de nossos clientes"
                         className="mb-6"
                     />
                 </div>
@@ -156,7 +156,7 @@ function ClienteCard({ cliente, mobile = false, onClick }: ClienteCardProps) {
                             {cliente.nome}
                         </CardTitle>
                         <p className="text-sm text-muted-foreground mt-2">
-                            Clique para conversar no WhatsApp
+                            Clique aqui para entrar em contato
                         </p>
                     </CardContent>
                 </Card>
@@ -190,6 +190,7 @@ function ClienteCard({ cliente, mobile = false, onClick }: ClienteCardProps) {
                     </CardTitle>
                 </CardContent>
             </Card>
+            
         </div>
     )
 }

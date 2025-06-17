@@ -6,6 +6,7 @@ import Hero from "./_components/hero";
 import Segments from "./_components/segments";
 import ServicosCards from "./_components/ServicosCards";
 import Testimonials from "./_components/testimonials";
+import Whatsapp from "./_components/whatsapp";
 
 
 
@@ -20,6 +21,7 @@ export default function Home() {
       <Testimonials />
       <Contact />
       <FooterDev />
+      <Whatsapp />
     </main>
   )
 }

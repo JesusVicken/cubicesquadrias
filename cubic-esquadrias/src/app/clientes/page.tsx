@@ -2,21 +2,18 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { SectionTitle } from '../_components/section-title'
 import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import { ArrowRight, Plus } from 'lucide-react'
 
 interface Cliente {
     id: number
     nome: string
     logo: string
-    isCTA?: boolean
-    isResidencial?: boolean // Nova propriedade para identificar esses cards
+    isResidencial?: boolean
 }
 
 const CLIENTES: Cliente[] = [
@@ -45,82 +42,99 @@ const CLIENTES: Cliente[] = [
         nome: "Rede Sarah",
         logo: "/sarah.png"
     },
-    {
+     {
         id: 6,
-        nome: "Casas de Alto Padrão",
-        logo: "/casa123.png",
-        isResidencial: true
+        nome: "JR Ribeiro",
+        logo: "/apoio5.png"
     },
     {
         id: 7,
-        nome: "Condomínios Residenciais",
-        logo: "/condominio.jpg",
-        isResidencial: true
+        nome: "OPS Soluções Arquitetônicas",
+        logo: "/apoio6.jpg"
     },
     {
         id: 8,
-        nome: "Seja Nosso Cliente",
-        logo: "/your-company-logo.png",
-        isCTA: true
+        nome: "STR Estrutura Metálicas",
+        logo: "/apoio2.jpeg",
+        isResidencial: true
+    },
+    {
+        id: 9,
+        nome: "Prime Cidade",
+        logo: "/apoio1.png"
+    },
+    {
+        id: 10,
+        nome: "STRUTTURA",
+        logo: "/apoio3.jpeg"
+    },
+    {
+        id: 11,
+        nome: "ALF Arquitetura & Design",
+        logo: "/apoio4.jpg"
+    },
+   
+     {
+        id: 12,
+        nome: "Condomínios Residenciais e Casas de Alto Padrão",
+        logo: "/condominio.jpg",
+        isResidencial: true
     }
 ]
 
 export default function Clientes() {
-    const handleWhatsAppRedirect = () => {
-        const phoneNumber = '5561994258350'
-        const message = 'Olá, gostaria de fazer um orçamento com vocês!'
-        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-        window.open(url, '_blank')
-    }
-
     return (
         <section className="w-full py-16 md:py-28 lg:py-36 bg-gradient-to-b from-background to-muted/10">
             <div className="container px-4 sm:px-6 mx-auto">
                 <div className="max-w-4xl mx-auto text-center mb-16">
                     <SectionTitle
                         title="Nossos Clientes"
-                        // subtitle="Alguns de nossos clientes"
                         className="mb-6"
                     />
                 </div>
 
-                {/* Desktop - Grid aprimorado */}
-                <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto px-8">
+                {/* Desktop - Grid */}
+                <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
                     {CLIENTES.map((cliente) => (
                         <ClienteCard
                             key={cliente.id}
                             cliente={cliente}
-                            onClick={cliente.isCTA ? handleWhatsAppRedirect : undefined}
                         />
                     ))}
                 </div>
 
-                {/* Mobile - Carrossel com Swiper */}
+                {/* Mobile - Carrossel */}
                 <div className="md:hidden max-w-2xl mx-auto px-4">
                     <Swiper
                         modules={[Autoplay, Pagination]}
-                        spaceBetween={24}
-                        slidesPerView={1}
+                        spaceBetween={20}
+                        slidesPerView={1.1}
+                        centeredSlides={true}
                         autoplay={{
-                            delay: 2000,
+                            delay: 3000,
                             disableOnInteraction: false,
                             pauseOnMouseEnter: true
                         }}
                         pagination={{
                             clickable: true,
-                            dynamicBullets: true,
-                            dynamicMainBullets: 3
+                            dynamicBullets: true
                         }}
                         loop={true}
-                        className="pb-14"
+                        className="pb-12"
+                        breakpoints={{
+                            400: {
+                                slidesPerView: 1.3
+                            }
+                        }}
                     >
                         {CLIENTES.map((cliente) => (
                             <SwiperSlide key={cliente.id}>
-                                <ClienteCard
-                                    cliente={cliente}
-                                    mobile
-                                    onClick={cliente.isCTA ? handleWhatsAppRedirect : undefined}
-                                />
+                                <div className="px-2 py-4">
+                                    <ClienteCard
+                                        cliente={cliente}
+                                        mobile
+                                    />
+                                </div>
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -130,67 +144,34 @@ export default function Clientes() {
     )
 }
 
-interface ClienteCardProps {
-    cliente: Cliente
-    mobile?: boolean
-    onClick?: () => void
-}
-
-function ClienteCard({ cliente, mobile = false, onClick }: ClienteCardProps) {
-    if (cliente.isCTA) {
-        return (
-            <div className="group perspective-1000">
-                <Card
-                    className="h-full transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-2 group-hover:shadow-primary/10 border-2 border-dashed border-primary/30 hover:border-primary/50 relative overflow-hidden bg-primary/5 flex flex-col items-center justify-center cursor-pointer"
-                    onClick={onClick}
-                >
-                    <CardHeader className="pb-0 px-6 pt-6">
-                        <div className={`relative w-full ${mobile ? 'h-52' : 'h-44'} flex items-center justify-center`}>
-                            <div className="bg-primary/10 rounded-full p-6">
-                                <Plus className="h-12 w-12 text-primary" />
-                            </div>
-                        </div>
-                    </CardHeader>
-                    <CardContent className="px-6 pb-6 pt-3 text-center">
-                        <CardTitle className="text-lg font-medium text-primary transition-colors duration-300">
-                            {cliente.nome}
-                        </CardTitle>
-                        <p className="text-sm text-muted-foreground mt-2">
-                            Clique aqui para entrar em contato
-                        </p>
-                    </CardContent>
-                </Card>
-            </div>
-        )
-    }
-
+function ClienteCard({ cliente, mobile = false }: { cliente: Cliente, mobile?: boolean }) {
     return (
-        <div className="group perspective-1000">
+        <div className="group perspective-1000 h-full">
             <Card className="h-full transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-2 group-hover:shadow-primary/10 border border-muted/30 hover:border-primary/20 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                <CardHeader className="pb-0 px-6 pt-6">
-                    <div className={`relative w-full ${mobile ? 'h-52' : 'h-44'} transition-transform duration-300 group-hover:scale-95`}>
+                <CardHeader className="pb-0 px-4 pt-4">
+                    <div className={`relative w-full ${mobile ? 'h-40' : 'h-36'} transition-transform duration-300 group-hover:scale-95`}>
                         <Image
                             src={cliente.logo}
-                            alt={cliente.nome}
+                            alt={`Logo ${cliente.nome}`}
                             fill
-                            className="object-contain p-4"
+                            className="object-contain p-2"
                             sizes={mobile ? "100vw" : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
-                            quality={100}
+                            quality={90}
+                            priority={cliente.id <= 5}
                         />
                     </div>
                 </CardHeader>
-                <CardContent className="px-6 pb-6 pt-3 text-center">
+                <CardContent className="px-4 pb-4 pt-2 text-center">
                     {cliente.isResidencial && (
-                        <p className="text-sm text-muted-foreground mb-1">Também trabalhamos com</p>
+                        <p className="text-xs text-muted-foreground mb-1">Também trabalhamos com</p>
                     )}
-                    <CardTitle className="text-lg font-medium text-foreground/90 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                    <CardTitle className="text-base font-medium text-foreground/90 group-hover:text-primary transition-colors duration-300 line-clamp-2">
                         {cliente.nome}
                     </CardTitle>
                 </CardContent>
             </Card>
-            
         </div>
     )
 }

@@ -24,7 +24,7 @@ const CLIENTES: Cliente[] = [
     {
         id: 1,
         nome: "Windsor Hotéis ",
-        logo: "/projeto11.jpeg"
+        logo: "/windsor.png"
     },
     {
         id: 2,

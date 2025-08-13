@@ -1,138 +1,150 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {  MagnifyingGlassPlusIcon, X } from '@phosphor-icons/react'
 
-const imagens = [
-    '/sauna.jpg',
-    '/projeto2.jpg',
-    '/projeto3.jpg',
-    '/projeto4.jpg',
-    '/projeto5.jpg',
-    '/projeto6.jpg',
-    '/projeto7.jpg',
-    '/projeto8.jpg',
-    '/projeto9.jpg',
-    '/projeto10.jpg',
+const projects = [
+    { id: 1, image: '/projeto11.jpeg', title: 'Projeto Residencial', category: 'Fachadas' },
+    { id: 2, image: '/projeto12.jpeg', title: 'Ambiente Corporativo', category: 'Interiores' },
+    { id: 3, image: '/projeto13.jpeg', title: 'Design Moderno', category: 'Fachadas' },
+    { id: 4, image: '/projeto14.jpeg', title: 'Estrutura Minimalista', category: 'Interiores' },
+    { id: 5, image: '/projeto15.jpeg', title: 'Projeto Comercial', category: 'Fachadas' },
+    { id: 6, image: '/projeto16.jpeg', title: 'Detalhes em Madeira', category: 'Interiores' },
+    { id: 7, image: '/projeto17.jpeg', title: 'Entrada Principal', category: 'Fachadas' },
+    { id: 8, image: '/projeto18.jpeg', title: 'Ambiente Integrado', category: 'Interiores' },
+    { id: 9, image: '/projeto19.jpeg', title: 'Estrutura Contemporânea', category: 'Fachadas' },
+    { id: 10, image: '/projeto20.jpeg', title: 'Design de Interiores', category: 'Interiores' },
+    { id: 11, image: '/projeto21.jpeg', title: 'Projeto Arquitetônico', category: 'Fachadas' },
+    { id: 12, image: '/projeto21.jpeg', title: 'Espaço Corporativo', category: 'Interiores' },
+    { id: 13, image: '/projeto23.jpeg', title: 'Fachada Moderna', category: 'Fachadas' },
 ]
 
-export default function CarrosselProjetos() {
-    const [activeIndex, setActiveIndex] = useState(0)
-    const intervaloRef = useRef<NodeJS.Timeout | null>(null)
+export default function ProjectsGallery() {
+    const [selectedCategory, setSelectedCategory] = useState<string>('Todos')
+    const [selectedProject, setSelectedProject] = useState<number | null>(null)
 
-    const iniciarScroll = () => {
-        intervaloRef.current = setInterval(() => {
-            setActiveIndex(prev => (prev + 1) % (imagens.length - 3))
-        }, 3000)
-    }
+    const categories = ['Todos', ...new Set(projects.map(project => project.category))]
 
-    const pararScroll = () => {
-        if (intervaloRef.current) {
-            clearInterval(intervaloRef.current)
-            intervaloRef.current = null
-        }
-    }
-
-    const nextSlide = () => {
-        setActiveIndex(prev => (prev + 1) % (imagens.length - 3))
-        resetInterval()
-    }
-
-    const prevSlide = () => {
-        setActiveIndex(prev => (prev - 1 + imagens.length - 3) % (imagens.length - 3))
-        resetInterval()
-    }
-
-    const resetInterval = () => {
-        pararScroll()
-        iniciarScroll()
-    }
-
-    useEffect(() => {
-        AOS.init({ duration: 1000 })
-        iniciarScroll()
-        return () => pararScroll()
-    }, [])
-
-    const getVisibleImages = () => {
-        const visible = []
-        for (let i = 0; i < 4; i++) {
-            const index = (activeIndex + i) % imagens.length
-            visible.push(imagens[index])
-        }
-        return visible
-    }
-
-    const visibleImages = getVisibleImages()
+    const filteredProjects = selectedCategory === 'Todos'
+        ? projects
+        : projects.filter(project => project.category === selectedCategory)
 
     return (
-        <div className="w-full relative group">
-            {/* Botão Anterior */}
-            <button
-                onClick={prevSlide}
-                className="absolute left-2 -translate-y-1/2 top-1/2 z-10 
-                   bg-white/80 p-2 rounded-full shadow-md hover:bg-white 
-                   transition-all opacity-0 group-hover:opacity-100 
-                   md:-left-10"
-                aria-label="Projeto anterior"
-            >
-                <ChevronLeft className="h-6 w-6 text-gray-800" />
-            </button>
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+                {/* Cabeçalho */}
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-bold text-gray-900 mb-4">Nossos Projetos</h2>
+                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Explore nossa galeria de trabalhos realizados e inspire-se com nossas soluções personalizadas.
+                    </p>
+                </div>
 
-            {/* Botão Próximo */}
-            <button
-                onClick={nextSlide}
-                className="absolute right-2 -translate-y-1/2 top-1/2 z-10 
-                   bg-white/80 p-2 rounded-full shadow-md hover:bg-white 
-                   transition-all opacity-0 group-hover:opacity-100 
-                   md:-right-10"
-                aria-label="Próximo projeto"
-            >
-                <ChevronRight className="h-6 w-6 text-gray-800" />
-            </button>
+                {/* Filtros */}
+                <div className="flex flex-wrap justify-center gap-3 mb-12">
+                    {categories.map(category => (
+                        <button
+                            key={category}
+                            onClick={() => setSelectedCategory(category)}
+                            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${selectedCategory === category
+                                ? 'bg-primary text-white shadow-md'
+                                : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm'
+                                }`}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
 
-            {/* Grid de imagens */}
-            <div
-                className="grid grid-cols-2 gap-4 h-[500px] mb-8"
-                onMouseEnter={pararScroll}
-                onMouseLeave={iniciarScroll}
-            >
-                {visibleImages.map((src, i) => (
-                    <div
-                        key={`grid-${i}`}
-                        className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-                        data-aos="fade-up"
-                        data-aos-delay={i * 100}
+                {/* Galeria */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredProjects.map(project => (
+                        <motion.div
+                            key={project.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="group relative overflow-hidden rounded-xl shadow-lg bg-white"
+                        >
+                            <div className="relative h-80 w-full">
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    quality={90}
+                                />
+
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                    <div>
+                                        <h3 className="text-white text-xl font-bold mb-1">{project.title}</h3>
+                                        <span className="text-gray-200">{project.category}</span>
+                                    </div>
+                                </div>
+
+                                <button
+                                    onClick={() => setSelectedProject(project.id)}
+                                    className="absolute top-4 right-4 p-3 bg-white/90 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white"
+                                    aria-label="Ampliar imagem"
+                                >
+                                    <MagnifyingGlassPlusIcon size={20} className="text-gray-800" />
+                                </button>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Modal de visualização */}
+            <AnimatePresence>
+                {selectedProject !== null && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+                        onClick={() => setSelectedProject(null)}
                     >
-                        <Image
-                            src={src}
-                            alt={`Projeto ${i + 1}`}
-                            fill
-                            className="object-cover hover:scale-105 transition-transform duration-500"
-                            quality={100}
-                        />
-                    </div>
-                ))}
-            </div>
+                        <button
+                            className="absolute top-6 right-6 p-2 text-white hover:text-gray-300 transition-colors"
+                            onClick={() => setSelectedProject(null)}
+                            aria-label="Fechar"
+                        >
+                            <X size={28} />
+                        </button>
 
-            {/* Indicadores */}
-            <div className="flex justify-center gap-2 mt-4">
-                {Array.from({ length: imagens.length - 3 }).map((_, i) => (
-                    <button
-                        key={i}
-                        onClick={() => {
-                            setActiveIndex(i)
-                            resetInterval()
-                        }}
-                        className={`h-2 w-2 rounded-full transition-all ${i === activeIndex ? 'bg-primary w-6' : 'bg-gray-300'
-                            }`}
-                        aria-label={`Ir para o projeto ${i + 1}`}
-                    />
-                ))}
-            </div>
-        </div>
+                        <motion.div
+                            initial={{ scale: 0.9 }}
+                            animate={{ scale: 1 }}
+                            exit={{ scale: 0.9 }}
+                            className="relative max-w-6xl w-full max-h-[90vh]"
+                            onClick={e => e.stopPropagation()}
+                        >
+                            {selectedProject && (
+                                <Image
+                                    src={projects.find(p => p.id === selectedProject)!.image}
+                                    alt={projects.find(p => p.id === selectedProject)!.title}
+                                    width={1200}
+                                    height={800}
+                                    className="object-contain w-full h-full max-h-[80vh]"
+                                    quality={100}
+                                />
+                            )}
+
+                            <div className="mt-4 text-center text-white">
+                                <h3 className="text-2xl font-bold">
+                                    {projects.find(p => p.id === selectedProject)?.title}
+                                </h3>
+                                <p className="text-gray-300">
+                                    {projects.find(p => p.id === selectedProject)?.category}
+                                </p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </section>
     )
 }

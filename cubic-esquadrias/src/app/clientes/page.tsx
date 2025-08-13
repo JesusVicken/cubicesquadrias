@@ -19,10 +19,12 @@ interface Cliente {
 }
 
 const CLIENTES: Cliente[] = [
+
+
     {
         id: 1,
-        nome: "Tecna Construtora",
-        logo: "/tecna.preto.png"
+        nome: "Windsor Hotéis ",
+        logo: "/projeto11.jpeg"
     },
     {
         id: 2,
@@ -81,6 +83,11 @@ const CLIENTES: Cliente[] = [
         nome: "Condomínios Residenciais e Casas de Alto Padrão",
         logo: "/condominio.jpg",
         isResidencial: true
+    },
+    {
+        id: 13,
+        nome: "Tecna Construtora",
+        logo: "/tecna.preto.png"
     }
 ]
 

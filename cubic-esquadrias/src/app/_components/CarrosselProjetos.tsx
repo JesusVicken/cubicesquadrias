@@ -3,22 +3,32 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import {  MagnifyingGlassPlusIcon, X } from '@phosphor-icons/react'
+import { MagnifyingGlassPlusIcon, X } from '@phosphor-icons/react'
 
 const projects = [
+    // FACHADAS
     { id: 1, image: '/projeto11.jpeg', title: 'Projeto Residencial', category: 'Fachadas' },
-    { id: 2, image: '/projeto12.jpeg', title: 'Ambiente Corporativo', category: 'Interiores' },
+    { id: 2, image: '/projeto12.jpeg', title: 'Ambiente Corporativo', category: 'Fachadas' },
     { id: 3, image: '/projeto13.jpeg', title: 'Design Moderno', category: 'Fachadas' },
-    { id: 4, image: '/projeto14.jpeg', title: 'Estrutura Minimalista', category: 'Interiores' },
-    { id: 5, image: '/projeto15.jpeg', title: 'Projeto Comercial', category: 'Fachadas' },
-    { id: 6, image: '/projeto16.jpeg', title: 'Detalhes em Madeira', category: 'Interiores' },
-    { id: 7, image: '/projeto17.jpeg', title: 'Entrada Principal', category: 'Fachadas' },
-    { id: 8, image: '/projeto18.jpeg', title: 'Ambiente Integrado', category: 'Interiores' },
-    { id: 9, image: '/projeto19.jpeg', title: 'Estrutura Contemporânea', category: 'Fachadas' },
-    { id: 10, image: '/projeto20.jpeg', title: 'Design de Interiores', category: 'Interiores' },
-    { id: 11, image: '/projeto21.jpeg', title: 'Projeto Arquitetônico', category: 'Fachadas' },
-    { id: 12, image: '/projeto21.jpeg', title: 'Espaço Corporativo', category: 'Interiores' },
-    { id: 13, image: '/projeto23.jpeg', title: 'Fachada Moderna', category: 'Fachadas' },
+    { id: 4, image: '/projeto14.jpeg', title: 'Estrutura Minimalista', category: 'Fachadas' },
+    { id: 5, image: '/projeto19.jpeg', title: 'Estrutura Contemporânea', category: 'Fachadas' },
+    { id: 6, image: '/projeto8.jpg', title: 'Fachada Principal', category: 'Fachadas' },
+    { id: 7, image: '/projeto9.jpg', title: 'Fachada Lateral', category: 'Fachadas' },
+    { id: 8, image: '/projeto23.jpeg', title: 'Fachada Moderna', category: 'Fachadas' },
+    { id: 9, image: '/projeto22.jpeg', title: 'Fachada de Vidro', category: 'Fachadas' },
+    { id: 10, image: '/projeto18.jpeg', title: 'Projeto Arquitetônico', category: 'Fachadas' },
+    { id: 11, image: '/projeto16.jpeg', title: 'Detalhes em Madeira', category: 'Fachadas' },
+    { id: 12, image: '/projeto5.jpg', title: 'Entrada Residencial', category: 'Fachadas' },
+    { id: 13, image: '/projeto10.jpg', title: 'Fachada Comercial', category: 'Fachadas' },
+    { id: 14, image: '/projeto15.jpeg', title: 'Fachada Urbana', category: 'Fachadas' },
+
+    // INTERIORES
+    { id: 15, image: '/projeto21.jpeg', title: 'Ambiente Corporativo', category: 'Interiores' },
+    { id: 16, image: '/projeto20.jpeg', title: 'Interiores Modernos', category: 'Interiores' },
+    { id: 17, image: '/projeto17.jpeg', title: 'Ambiente Integrado', category: 'Interiores' },
+    { id: 18, image: '/projeto4.jpg', title: 'Sala de Estar', category: 'Interiores' },
+    { id: 19, image: '/projeto3.jpg', title: 'Espaço de Convivência', category: 'Interiores' },
+    { id: 20, image: '/brise.jpg', title: 'Brise Interno', category: 'Interiores' },
 ]
 
 export default function ProjectsGallery() {
@@ -27,9 +37,10 @@ export default function ProjectsGallery() {
 
     const categories = ['Todos', ...new Set(projects.map(project => project.category))]
 
-    const filteredProjects = selectedCategory === 'Todos'
-        ? projects
-        : projects.filter(project => project.category === selectedCategory)
+    const filteredProjects =
+        selectedCategory === 'Todos'
+            ? projects
+            : projects.filter(project => project.category === selectedCategory)
 
     return (
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
@@ -49,8 +60,8 @@ export default function ProjectsGallery() {
                             key={category}
                             onClick={() => setSelectedCategory(category)}
                             className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${selectedCategory === category
-                                ? 'bg-primary text-white shadow-md'
-                                : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm'
+                                    ? 'bg-primary text-white shadow-md'
+                                    : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm'
                                 }`}
                         >
                             {category}

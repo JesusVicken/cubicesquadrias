@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { WhatsappLogoIcon } from "@phosphor-icons/react/dist/ssr"
 import AOS from 'aos'
@@ -17,15 +16,15 @@ export default function Hero() {
 
     return (
         <section className="relative w-full h-[60vh] md:h-[70vh]">
-            {/* Imagem de fundo */}
+            {/* Vídeo de fundo */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
-                <Image
-                    src="/Hero.jpg"
-                    alt="Imagem de fundo"
-                    fill
-                    className="object-cover object-center"
-                    priority
-                    quality={100}
+                <video
+                    src="/video1.mp4" // coloque seu arquivo de vídeo na pasta /public
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover object-center"
                     data-aos="zoom-out"
                     data-aos-delay="100"
                 />

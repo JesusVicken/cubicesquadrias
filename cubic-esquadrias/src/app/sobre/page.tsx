@@ -28,26 +28,87 @@ export default function SobrePage() {
 
     return (
         <>
+            {/* Hero com imagem de fundo e logo */}
+            <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
+                {/* Imagem de fundo */}
+                <Image
+                    src="/hero.jpg"
+                    alt="Fachada moderna com esquadrias"
+                    fill
+                    priority
+                    quality={100}
+                    className="object-cover object-center"
+                    data-aos="zoom-out"
+                />
+
+                {/* Overlay escuro */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/80" />
+
+                {/* Logo centralizado */}
+                <div
+                    className="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                >
+                    <Image
+                        src="/logobranco.png"
+                        alt="Símbolo Cubic Esquadrias"
+                        width={180}
+                        height={180}
+                        className="w-40 md:w-48 lg:w-56 drop-shadow-2xl"
+                        priority
+                    />
+                </div>
+            </section>
+
             {/* Sobre a Empresa */}
             <main className="max-w-4xl mx-auto px-4 py-12">
-                <h1 className="text-4xl font-bold mb-6 text-center" data-aos="fade-up">
+                <h1
+                    className="text-4xl font-bold mb-6 text-center"
+                    data-aos="fade-up"
+                >
                     Sobre a Cubic Esquadrias
                 </h1>
 
-                <p className="text-lg leading-relaxed text-muted-foreground mb-6" data-aos="fade-right">
-                    A <strong>Cubic Esquadrias</strong> nasceu com a missão de transformar projetos arquitetônicos em experiências visuais marcantes. Somos especialistas em esquadrias de alumínio de alto padrão, oferecendo soluções que unem design, funcionalidade e durabilidade para obras residenciais e corporativas.
+                <p
+                    className="text-lg leading-relaxed text-muted-foreground mb-6"
+                    data-aos="fade-right"
+                >
+                    A <strong>Cubic Esquadrias</strong> nasceu com a missão de transformar
+                    projetos arquitetônicos em experiências visuais marcantes. Somos
+                    especialistas em esquadrias de alumínio de alto padrão, oferecendo
+                    soluções que unem design, funcionalidade e durabilidade para obras
+                    residenciais e corporativas.
                 </p>
 
-                <p className="text-lg leading-relaxed text-muted-foreground mb-6" data-aos="fade-left">
-                    Atuamos com excelência em cada etapa — do projeto à instalação — com um time técnico altamente qualificado e atento aos mínimos detalhes. Valorizamos a transparência, o comprometimento e o acabamento impecável. Cada peça que entregamos carrega o DNA da inovação e da estética refinada.
+                <p
+                    className="text-lg leading-relaxed text-muted-foreground mb-6"
+                    data-aos="fade-left"
+                >
+                    Atuamos com excelência em cada etapa — do projeto à instalação — com
+                    um time técnico altamente qualificado e atento aos mínimos detalhes.
+                    Valorizamos a transparência, o comprometimento e o acabamento
+                    impecável. Cada peça que entregamos carrega o DNA da inovação e da
+                    estética refinada.
                 </p>
 
-                <p className="text-lg leading-relaxed text-muted-foreground mb-6" data-aos="fade-right">
-                    Trabalhamos lado a lado com arquitetos, engenheiros e clientes para criar ambientes que combinam elegância e eficiência térmica/acústica, utilizando materiais de alto desempenho e tecnologia de ponta em fabricação.
+                <p
+                    className="text-lg leading-relaxed text-muted-foreground mb-6"
+                    data-aos="fade-right"
+                >
+                    Trabalhamos lado a lado com arquitetos, engenheiros e clientes para
+                    criar ambientes que combinam elegância e eficiência térmica/acústica,
+                    utilizando materiais de alto desempenho e tecnologia de ponta em
+                    fabricação.
                 </p>
 
-                <p className="text-lg leading-relaxed text-muted-foreground" data-aos="fade-up">
-                    Mais do que esquadrias, entregamos <strong>soluções inteligentes e exclusivas</strong> para cada projeto. Na Cubic, o compromisso com a qualidade não é promessa — é padrão.
+                <p
+                    className="text-lg leading-relaxed text-muted-foreground"
+                    data-aos="fade-up"
+                >
+                    Mais do que esquadrias, entregamos{' '}
+                    <strong>soluções inteligentes e exclusivas</strong> para cada projeto.
+                    Na Cubic, o compromisso com a qualidade não é promessa — é padrão.
                 </p>
             </main>
 
@@ -67,7 +128,8 @@ export default function SobrePage() {
                                 />
                             </div>
                             <p className="mb-6 text-gray-300">
-                                Excelência em esquadrias de alumínio sob medida para seu projeto em Brasília.
+                                Excelência em esquadrias de alumínio sob medida para seu projeto
+                                em Brasília.
                             </p>
                             <a
                                 href={whatsappLink}
@@ -104,7 +166,9 @@ export default function SobrePage() {
                         {/* Redes Sociais */}
                         <div data-aos="fade-up" data-aos-delay="200">
                             <h3 className="text-2xl font-semibold mb-4">Redes Sociais</h3>
-                            <p className="mb-4 text-gray-300">Siga a Cubic para ver nossos projetos e novidades</p>
+                            <p className="mb-4 text-gray-300">
+                                Siga a Cubic para ver nossos projetos e novidades
+                            </p>
                             <div className="flex gap-4">
                                 <a
                                     href="https://www.facebook.com/cubicesquadr"

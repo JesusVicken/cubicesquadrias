@@ -32,7 +32,7 @@ export default function SobrePage() {
             <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
                 {/* Imagem de fundo */}
                 <Image
-                    src="/hero.jpg"
+                    src="/Hero.jpg"
                     alt="Fachada moderna com esquadrias"
                     fill
                     priority
